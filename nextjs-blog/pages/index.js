@@ -36,7 +36,7 @@ export default function Home({ allPostsData }) {
 }
 // this gets the data that homes needs, i think
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
   return {
     props: {
       allPostsData,
