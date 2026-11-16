@@ -21,7 +21,7 @@ export async function getSortedPostsData() {
     jsonString = await got(dataURL);
     console.log(jsonString.body);
   } catch(error) {
-    jsonString.body = [];
+    //jsonString.body = [];
     console.log(error);
   }
   
@@ -38,7 +38,8 @@ export async function getSortedPostsData() {
   return jsonObj.map(item => {
     return {
       id: item.ID.toString(),
-      name: item.post_title
+      title: item.post_title,
+      date: item.post_date
     }
   });
 }
@@ -47,6 +48,7 @@ export async function getSortedPostsData() {
 export async function getAllPostIds() {
  // get filepath to json file
   // const filePath = path.join(dataDir, 'persons.json');
+   // console.log("test");
 
   // load json file contents
   // const jsonString = fs.readFileSync(filePath, 'utf8');
@@ -54,7 +56,7 @@ export async function getAllPostIds() {
   try {
     // next line uses got synchronously to retrive via https our json data from wp site
     jsonString = await got(dataURL);
-    console.log(jsonString.body);
+    //console.log(jsonString.body);
   } catch(error) {
     jsonString.body = [];
     console.log(error);
@@ -63,7 +65,8 @@ export async function getAllPostIds() {
   // convert string from file into json array object
   // const jsonObj = JSON.parse(jsonString);
   const jsonObj = JSON.parse(jsonString.body);
-
+  //console.log("test");
+  //console.log(jsonObj);
   // use map() on array to extract just id properties into new array of obj values
   return jsonObj.map(item => {
     return {
@@ -88,7 +91,7 @@ export async function getAllPostIds() {
 }
 
 // or getData
-export async function getPostData(id) {
+export async function getPostData(idRequested) {
   // get filepath to json file
   // const filePath = path.join(dataDir, 'persons.json');
 
@@ -98,7 +101,7 @@ export async function getPostData(id) {
   try {
     // next line uses got synchronously to retrive via https our json data from wp site
     jsonString = await got(dataURL);
-    console.log(jsonString.body);
+    //console.log(jsonString.body);
   } catch(error) {
     jsonString.body = [];
     console.log(error);
@@ -115,8 +118,11 @@ export async function getPostData(id) {
 
   // extract object value in filtered array if any
   let objReturned;
+  
   if (objMatch.length > 0) {
     objReturned = objMatch[0];
+    // console.log("objReturned");
+    console.log(objReturned);
   } else {
     objReturned = {};
   }

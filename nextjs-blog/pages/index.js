@@ -4,7 +4,7 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
-import Date from '../components/date';
+//import Date from '../components/date';
 
 // when this file is used the function Home is called 
 export default function Home({ allPostsData }) {
@@ -25,7 +25,7 @@ export default function Home({ allPostsData }) {
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                {  <Date dateString={date} /> }
               </small>
             </li>
           ))}

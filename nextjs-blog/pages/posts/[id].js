@@ -2,7 +2,7 @@
 import Layout from '../../components/layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
-import Date from '../../components/date';
+//import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
 
 // when this file is used the function Post is called
@@ -14,11 +14,11 @@ export default function Post({ postData }) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{postData.post_title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          {  <Date dateString={postData.date} /> }
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: postData.post_content }} />
       </article>
     </Layout>
   );
@@ -26,7 +26,7 @@ export default function Post({ postData }) {
 
 //this is how the post pages know where they are?
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths,
     fallback: false,
